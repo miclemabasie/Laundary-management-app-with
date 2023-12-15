@@ -2,6 +2,7 @@ from pathlib import Path
 import environ
 import os
 
+
 # Config environment varaibles
 env = environ.Env(
     # set casting, default value
@@ -46,6 +47,8 @@ LOCAL_APPS = [
     "apps.users.apps.UsersConfig",
     "apps.core.apps.CoreConfig",
     "apps.profiles.apps.ProfilesConfig",
+    "apps.orders.apps.OrdersConfig",
+    "apps.customers.apps.CustomersConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THRID_PARTY_APPS + LOCAL_APPS
@@ -61,7 +64,7 @@ MIDDLEWARE = [
 ]
 
 
-ROOT_URLCONF = "demo.urls"
+ROOT_URLCONF = "LMA.urls"
 
 TEMPLATES = [
     {
@@ -79,7 +82,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "demo.wsgi.application"
+WSGI_APPLICATION = "LMA.wsgi.application"
 
 
 # Internationalization
@@ -115,7 +118,7 @@ import logging.config
 from django.utils.log import DEFAULT_LOGGING
 
 logger = logging.getLogger(__name__)
-LOG_FILE_NAME = "demo.log"
+LOG_FILE_NAME = "lma.log"
 LOG_LEVEL = "INFO"
 
 logging.config.dictConfig(
