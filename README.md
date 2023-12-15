@@ -1,1 +1,1 @@
-# Laundary Management Application
+# django_starter_project
