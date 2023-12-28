@@ -22,25 +22,25 @@ INTERNAL_IPS = [
 # DATABASE SETTINGS FOR LOCAL DEVELOPMENT
 
 # -------- Defaul database config ---------
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
 # -------Database config for postgresql or mysql --------
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": env("PG_NAME"),
-#         "USER": env("PG_USER"),
-#         "PASSWORD": env("PG_PASSWORD"),
-#         "HOST": env("PG_HOST"),
-#         "PORT": env("PG_PORT"),
-#     }
-# }
+DATABASES = {
+    "default": {
+        "ENGINE": env("DB_ENGINE"),
+        "NAME": env("PG_NAME"),
+        "USER": env("PG_USER"),
+        "PASSWORD": env("PG_PASSWORD"),
+        "HOST": env("PG_HOST"),
+        "PORT": env("PG_PORT"),
+    }
+}
 
 
 # DJANGO DEBUG TOOLBAR CONFIGURATION

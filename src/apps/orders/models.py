@@ -5,7 +5,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from apps.common.models import TimeStampedUUIDModel
 from django.contrib.auth import get_user_model
-
+from decimal import Decimal
 
 User = get_user_model()
 
@@ -41,18 +41,19 @@ class Order(TimeStampedUUIDModel):
         decimal_places=2,
         default=0.0,
     )
-    validated = models.BooleanField(null=True, blank=True, defaul=False)
+    validated = models.BooleanField(null=True, blank=True, default=False)
 
-    def save(self) -> None:
+    def save(self, *a, **kw) -> None:
         self.transaction_id = str(uuid.uuid4())[-12:]
         # get all orderitems for this order
+        print("calling the order save########")
         if self.validated:
             order_items = OrderItem.objects.filter(order__pkid=self.pkid)
-            self.total_price
             if len(order_items) > 0:
                 for order_item in order_items:
-                    self.total_price += order_item.price
-        return super().save()
+                    # Get the total cost of orderitems -> (cost_per_item * quantity)
+                    self.total_price += Decimal(order_item.total_price)
+        return super().save(*a, **kw)
 
 
 class OrderItem(TimeStampedUUIDModel):
@@ -83,10 +84,10 @@ class OrderItem(TimeStampedUUIDModel):
     special_instructions = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return f"OrderItem -> {self.name} part of orderID: {self.order.pkid}"
+        return f"OrderItem -> {self.item_type} part of orderID: {self.order.pkid}"
 
-    def save(self) -> None:
+    def save(self, *a, **kw) -> None:
         self.transaction_id = str(uuid.uuid4())[-12:]
         # get all orderitems for this order
-        self.total_price = self.quantity * self.price
-        return super().save()
+        self.total_price = self.quantity * self.price_per_item
+        return super().save(*a, **kw)
