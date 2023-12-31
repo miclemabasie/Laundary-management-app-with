@@ -14,21 +14,39 @@ class ProfileSerializer(serializers.ModelSerializer):
     reviews = serializers.SerializerMethodField(read_only=True)
     rating = serializers.SerializerMethodField(read_only=True)
 
-
     class Meta:
         model = Profile
-        fields = ["username", "first_name", "last_name", "email", "id", "phone_number", "country", "full_name", "profile_photo", "about_me", "license", "gender", "country", "city", "is_buyer", "is_seller", "is_agent", "num_reviews", "reviews", "rating"]
+        fields = [
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "id",
+            "phone_number",
+            "country",
+            "full_name",
+            "profile_photo",
+            "about_me",
+            "license",
+            "gender",
+            "country",
+            "city",
+            "is_buyer",
+            "is_seller",
+            "is_agent",
+            "num_reviews",
+            "reviews",
+            "rating",
+        ]
 
-    
     def get_full_name(self, obj):
         first_name = obj.user.first_name.title()
         last_name = obj.user.last_name.title()
 
         return f"{first_name} {last_name}"
-    
+
     def get_rating(self, obj):
         return 1
-
 
     def get_reviews(self, obj):
         reviews = obj.agent_review.all()
@@ -48,12 +66,21 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ["phone_number", "profile_photo", "about_me", "license", "gender", "country", "city", "is_buyer", "is_seller", "is_agent"]
+        fields = [
+            "phone_number",
+            "profile_photo",
+            "about_me",
+            "license",
+            "gender",
+            "country",
+            "city",
+            "is_buyer",
+            "is_seller",
+            "is_agent",
+        ]
 
-    
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         if instance.top_agent:
             representation["top_agent"] = True
         return representation
-

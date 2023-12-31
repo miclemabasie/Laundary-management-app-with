@@ -19,6 +19,7 @@ class Command(BaseCommand):
 
         # rename the django project
         files_to_rename = ["demo/settings/base.py", "demo/wsgi.py", "manage.py"]
+
         folder_to_rename = "demo"
 
         for f in files_to_rename:
@@ -36,3 +37,4 @@ class Command(BaseCommand):
             self.style.SUCCESS(f"Project has been renamed to {new_project_name}.")
         )
         # return super().handle(*args, **options)
+

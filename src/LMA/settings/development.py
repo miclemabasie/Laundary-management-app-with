@@ -33,7 +33,7 @@ INTERNAL_IPS = [
 
 DATABASES = {
     "default": {
-        "ENGINE": env("DB_ENGINE"),
+        "ENGINE": env("PG_ENGINE"),
         "NAME": env("PG_NAME"),
         "USER": env("PG_USER"),
         "PASSWORD": env("PG_PASSWORD"),
