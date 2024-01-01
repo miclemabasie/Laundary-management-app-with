@@ -37,4 +37,3 @@ class Command(BaseCommand):
             self.style.SUCCESS(f"Project has been renamed to {new_project_name}.")
         )
         # return super().handle(*args, **options)
-

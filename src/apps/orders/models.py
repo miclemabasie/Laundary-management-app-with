@@ -12,7 +12,7 @@ User = get_user_model()
 
 
 class OrderSatus(models.TextChoices):
-    NEW = "New", _("New")
+    NEW = "NEW", _("New")
     INPROGRESS = "InProgress", _("InProgress")
     COMPLETED = "Completed", _("Completed")
     COLLECTED = "Collected", _("Collected")
@@ -53,7 +53,9 @@ class Order(TimeStampedUUIDModel):
             if len(order_items) > 0:
                 for order_item in order_items:
                     # Get the total cost of orderitems -> (cost_per_item * quantity)
-                    self.total_price += Decimal(order_item.total_price)
+                    self.total_price = Decimal(self.total_price) + Decimal(
+                        order_item.total_price
+                    )
         return super().save(*a, **kw)
 
 

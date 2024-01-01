@@ -5,7 +5,7 @@ from apps.common.models import TimeStampedUUIDModel
 from phonenumber_field.modelfields import PhoneNumberField
 
 
-class Customer(models.Model):
+class Customer(TimeStampedUUIDModel):
     name = models.CharField(verbose_name=_("Customer Name"), max_length=50)
     email = models.EmailField(verbose_name=_("Customer Email"), max_length=254)
     phone_number = PhoneNumberField(
