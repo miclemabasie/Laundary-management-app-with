@@ -13,6 +13,9 @@ class Customer(models.Model):
     )
     address = models.CharField(verbose_name=_("Customer Address"), max_length=200)
 
+    def __str__(self) -> None:
+        return f"{self.name}"
+
     def get_oders(self):
         """Get all the oders placed by this customer"""
         pass

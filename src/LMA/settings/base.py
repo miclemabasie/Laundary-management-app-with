@@ -41,7 +41,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THRID_PARTY_APPS = []
+THRID_PARTY_APPS = ["rest_framework", "rest_framework_simplejwt"]
 
 LOCAL_APPS = [
     "apps.users.apps.UsersConfig",
@@ -81,6 +81,12 @@ TEMPLATES = [
         },
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
 
 WSGI_APPLICATION = "LMA.wsgi.application"
 

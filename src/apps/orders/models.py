@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from apps.common.models import TimeStampedUUIDModel
 from django.contrib.auth import get_user_model
 from decimal import Decimal
+from apps.customers.models import Customer
 
 User = get_user_model()
 
@@ -27,7 +28,7 @@ class Order(TimeStampedUUIDModel):
     )
     transaction_id = models.CharField(null=True, default=True, max_length=15)
     customer = models.ForeignKey(
-        User, related_name="orders", on_delete=models.SET_NULL, null=True
+        Customer, related_name="orders", on_delete=models.SET_NULL, null=True
     )
     status = models.CharField(
         verbose_name=_("Order Status"),
