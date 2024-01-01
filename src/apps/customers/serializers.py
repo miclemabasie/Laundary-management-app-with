@@ -10,7 +10,7 @@ class CustomerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Customer
-        fields = ["name", "email", "phone_number", "address", "orders"]
+        fields = ["pkid", "name", "email", "phone_number", "address", "orders"]
 
     def get_orders(self, obj):
         orders = Order.objects.filter(customer__name=obj.name)
