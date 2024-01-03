@@ -12,7 +12,7 @@ User = get_user_model()
 
 
 @api_view(["GET"])
-@permission_classes([permissions.AllowAny])
+@permission_classes([permissions.IsAuthenticated])
 def order_list_view(request):
     #
     orders = Order.objects.all()
@@ -22,7 +22,7 @@ def order_list_view(request):
 
 
 @api_view(["GET"])
-@permission_classes([permissions.AllowAny])
+@permission_classes([permissions.IsAuthenticated])
 def orderitem_list_view(request):
     #
     orders = OrderItem.objects.all()
@@ -32,7 +32,7 @@ def orderitem_list_view(request):
 
 
 @api_view(["POST"])
-@permission_classes([permissions.AllowAny])
+@permission_classes([permissions.IsAuthenticated])
 def create_order_view(request, *a, **kw):
     data = request.data
 
@@ -77,7 +77,7 @@ def create_order_view(request, *a, **kw):
 
 
 @api_view(["PATCH"])
-@permission_classes([permissions.AllowAny])
+@permission_classes([permissions.IsAuthenticated])
 def update_order_view(request, transaction_id, *a, **kw):
     try:
         order = Order.objects.get(transaction_id=transaction_id)
@@ -92,7 +92,7 @@ def update_order_view(request, transaction_id, *a, **kw):
 
 
 @api_view(["DELETE"])
-@permission_classes([permissions.AllowAny])
+@permission_classes([permissions.IsAuthenticated])
 def delete_order_view(reqeust, transaction_id, *a, **kw):
     try:
         order = Order.objects.get(transaction_id=transaction_id)

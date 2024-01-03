@@ -14,7 +14,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework import status
 
 @api_view(["GET"])
-@permission_classes([permissions.AllowAny])
+@permission_classes([permissions.IsAuthenticated])
 def customer_list_view(request):
     customers = Customer.objects.all()
 
@@ -24,7 +24,7 @@ def customer_list_view(request):
 
 
 @api_view(["GET"])
-@permission_classes([permissions.AllowAny])
+@permission_classes([permissions.IsAuthenticated])
 def customer_detail_view(request, pkid, *a, **kw):
     try:
         customer = Customer.objects.get(pkid=pkid)
@@ -37,7 +37,7 @@ def customer_detail_view(request, pkid, *a, **kw):
     return Response(namespaced_response, status=status.HTTP_200_OK)
 
 @api_view(["PATCH"])
-@permission_classes([permissions.AllowAny])
+@permission_classes([permissions.IsAuthenticated])
 def customer_update_view(request, pkid, *a, **kw):
     try:
         customer = Customer.objects.get(pkid=pkid)
@@ -52,7 +52,7 @@ def customer_update_view(request, pkid, *a, **kw):
 
 
 @api_view(["DELETE"])
-@permission_classes([permissions.AllowAny])
+@permission_classes([permissions.IsAuthenticated])
 def customer_delete_view(request, pkid, *a, **kw):
     try:
         customer = Customer.objects.get(pkid=pkid)
@@ -63,7 +63,7 @@ def customer_delete_view(request, pkid, *a, **kw):
 
 
 @api_view(["POST"])
-@permission_classes([permissions.AllowAny])
+@permission_classes([permissions.IsAuthenticated])
 def customer_create_view(request):
     data = request.data
     # Check if customer with credentials already exists
