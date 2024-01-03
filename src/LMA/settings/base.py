@@ -28,6 +28,7 @@ DEBUG = env("DEBUG")
 # exception if SECRET_KEY not in os.environ
 SECRET_KEY = env("SECRET_KEY")
 
+EMAIL_BACKEND = "djcelery_email.backends.CeleryEmailBackend"
 
 ALLOWED_HOSTS = []
 
@@ -42,7 +43,11 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THRID_PARTY_APPS = ["rest_framework", "rest_framework_simplejwt"]
+THRID_PARTY_APPS = [
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "djcelery_email",
+]
 
 LOCAL_APPS = [
     "apps.users.apps.UsersConfig",
@@ -84,8 +89,8 @@ TEMPLATES = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     )
 }
 
@@ -160,7 +165,6 @@ DJOSER = {
     "ACTIVATION_URL": "activate/{uid}/{token}",
     "SEND_ACTIVATION_EMAIL": True,
 }
-
 
 
 # LOGGING
