@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from apps.common.views import test_send_mail
+from apps.common.views import test_send_mail, js_test_rout
 # from rest_framework_simplejwt.views import (
 #     TokenObtainPairView,
 #     TokenRefreshView,
@@ -8,6 +8,7 @@ from apps.common.views import test_send_mail
 
 urlpatterns = [
     path("testmail/", test_send_mail, name="send-mail"),
+    path("api/test/", js_test_rout),
     path("admin/", admin.site.urls),
     path("__debug__/", include("debug_toolbar.urls")),
     # path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),

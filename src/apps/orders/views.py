@@ -23,6 +23,17 @@ def order_list_view(request):
 
 @api_view(["GET"])
 @permission_classes([permissions.IsAuthenticated])
+def order_detail_view(request, transaction_id):
+    orders = Order.objects.get(transaction_id=transaction_id)
+    serializer = OrderSerializer(orders)
+    print(request.headers)
+    namespaced_data = {"orders": serializer.data}
+    return Response(namespaced_data)
+
+
+
+@api_view(["GET"])
+@permission_classes([permissions.IsAuthenticated])
 def orderitem_list_view(request):
     #
     orders = OrderItem.objects.all()

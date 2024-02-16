@@ -32,6 +32,15 @@ EMAIL_BACKEND = "djcelery_email.backends.CeleryEmailBackend"
 
 ALLOWED_HOSTS = []
 
+
+# Access_Control_Allow_Origin = True
+
+# CORS_ALLOWED_ORIGINS = True
+
+# CORS_ALLOWED_ORIGIN_REGEXES
+
+CORS_ALLOW_ALL_ORIGINS = True
+
 # Application definition
 
 DJANGO_APPS = [
@@ -55,13 +64,17 @@ LOCAL_APPS = [
     "apps.profiles.apps.ProfilesConfig",
     "apps.orders.apps.OrdersConfig",
     "apps.customers.apps.CustomersConfig",
+    "apps.gallery.apps.GalleyConfig",
+    "apps.shop.apps.ShopConfig"
 ]
 
-INSTALLED_APPS = DJANGO_APPS + THRID_PARTY_APPS + LOCAL_APPS
 
+INSTALLED_APPS = DJANGO_APPS + THRID_PARTY_APPS + LOCAL_APPS
+ 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -75,7 +88,7 @@ ROOT_URLCONF = "LMA.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -164,6 +177,8 @@ DJOSER = {
     "USERNAME_RESET_CONFIRM_URL": "email/reset/confirm/{uid}/{token}",
     "ACTIVATION_URL": "activate/{uid}/{token}",
     "SEND_ACTIVATION_EMAIL": True,
+    'ACTIVATION_EMAIL_HTML_TEMPLATE': 'djoseer.templates.email.activation.html',
+    # 'ACTIVATION_EMAIL_PLAIN_TEMPLATE': 'path/to/custom_activation_email.txt',
 }
 
 
