@@ -31,7 +31,6 @@ def order_detail_view(request, transaction_id):
     return Response(namespaced_data)
 
 
-
 @api_view(["GET"])
 @permission_classes([permissions.IsAuthenticated])
 def orderitem_list_view(request):

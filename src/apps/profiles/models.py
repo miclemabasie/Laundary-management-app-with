@@ -15,7 +15,14 @@ class Gender(models.TextChoices):
     OTHER = "Other", _("Other")
 
 
+class PROFILE_TYPES(models.TextChoices):
+    SHOP_OWNDER = "shop_owner", _("Shop Owner")
+    SHOP_STAFF = "shop_staff", _("Shop Staff")
+    CUSTOMER = "customer", _("Customer")
+
+
 class Profile(TimeStampedUUIDModel):
+
     user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
     phone_number = PhoneNumberField(
         verbose_name=_("Phone Number"), max_length=30, default="+237680672888"
@@ -41,6 +48,9 @@ class Profile(TimeStampedUUIDModel):
         default="Bamenda",
         blank=False,
         null=False,
+    )
+    profile_type = models.CharField(
+        max_length=20, choices=PROFILE_TYPES.choices, default=PROFILE_TYPES.CUSTOMER
     )
 
     def __str__(self):

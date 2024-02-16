@@ -64,13 +64,15 @@ LOCAL_APPS = [
     "apps.profiles.apps.ProfilesConfig",
     "apps.orders.apps.OrdersConfig",
     "apps.customers.apps.CustomersConfig",
-    "apps.gallery.apps.GalleyConfig",
-    "apps.shop.apps.ShopConfig"
+    "apps.gallery.apps.GalleryConfig",
+    "apps.shop.apps.ShopConfig",
+    "apps.subscriptions.apps.SubscriptionsConfig",
+    "apps.reviews.apps.ReviewsConfig"
 ]
 
 
 INSTALLED_APPS = DJANGO_APPS + THRID_PARTY_APPS + LOCAL_APPS
- 
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -177,7 +179,7 @@ DJOSER = {
     "USERNAME_RESET_CONFIRM_URL": "email/reset/confirm/{uid}/{token}",
     "ACTIVATION_URL": "activate/{uid}/{token}",
     "SEND_ACTIVATION_EMAIL": True,
-    'ACTIVATION_EMAIL_HTML_TEMPLATE': 'djoseer.templates.email.activation.html',
+    "ACTIVATION_EMAIL_HTML_TEMPLATE": "djoseer.templates.email.activation.html",
     # 'ACTIVATION_EMAIL_PLAIN_TEMPLATE': 'path/to/custom_activation_email.txt',
 }
 

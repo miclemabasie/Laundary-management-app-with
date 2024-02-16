@@ -11,4 +11,4 @@ urlpatterns = [
     path("<str:pkid>/", views.customer_detail_view, name="customer-detail"),
     path("update/<str:pkid>/", views.customer_update_view, name="customer-update"),
     path("delete/<str:pkid>/", views.customer_delete_view, name="customer-delete"),
-]    
+]
