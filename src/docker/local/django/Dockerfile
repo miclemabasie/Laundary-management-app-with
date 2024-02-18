@@ -1,22 +1,19 @@
-FROM python:3.10.0-slim-buster
+FROM python:3.10-slim-buster
 
-# set environment variables
 ENV APP_HOME=/app
-RUN mkdir $APP_HOME
-RUN mkdir $APP_HOME/staticfiles
-WORKDIR $APP_HOME
+RUN mkdir ${APP_HOME}
+RUN mkdir ${APP_HOME}/staticfiles
+WORKDIR ${APP_HOME}
 
+# Set meta data for the image
+LABEL maintainer="api.techwithmiclem.com"
+LABEL blog="techwithmiclem.com/blog"
+LABEL description="Development image for a Laundry Management System"
 
-LABEL maintainer="miclemabasie3@gmail.com"
-LABEL youtube="None"
-LABEL description="Development Image for Laundary manage ment API"
-
-
+# Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
-# FOR DOCKER LOGS
-ENV PYTHONUNBUFFERED = 1
+ENV PYTHONUNBUFFERED=1
 
-# INSTALL DEPENDENCIES
 RUN apt-get update \
     && apt-get install -y build-essential \
     && apt-get install -y libpq-dev \
@@ -25,16 +22,22 @@ RUN apt-get update \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --upgrade pip
+# RUN apt-get update \
+#     && apt-get install -y build-essential \
+#     && apt-get install -y libpq-dev \
+#     && apt-get install -y gettext \
+#     && apt-get install -y netcat gcc postgresql-11 \
+#     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+#     && rm -rf /var/lib/apt/lists/*
 
+RUN pip install --upgrade pip
 
-# installing requirements
 COPY ./requirements.txt /app/requirements.txt
-WORKDIR /app
-RUN pip intsll -r requirements.txt
+RUN pip install -r requirements.txt
 
+# Commands to run before the container starts up
+# from the entrypoint file
 
-# Entrypointfile specifies custom commands to run before container starts
 COPY ./docker/local/django/entrypoint /entrypoint
 RUN sed -i 's/\r$//g' /entrypoint
 RUN chmod +x /entrypoint
@@ -43,5 +46,4 @@ COPY ./docker/local/django/start /start
 RUN sed -i 's/\r$//g' /start
 RUN chmod +x /start
 
-# first command to run when container starts
 ENTRYPOINT [ "/entrypoint" ]

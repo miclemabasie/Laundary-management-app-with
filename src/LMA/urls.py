@@ -18,3 +18,8 @@ urlpatterns = [
     path("api/v1/customers/", include("apps.customers.urls", namespace="customers")),
     path("api/v1/orders/", include("apps.orders.urls", namespace="orders")),
 ]
+
+admin.site.site_header = "LMA Admin"
+admin.site.site_title = "LMA Administration Portal"
+admin.site.index_title = "Welcome to the LMA portal"
+
