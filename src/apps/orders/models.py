@@ -7,6 +7,7 @@ from apps.common.models import TimeStampedUUIDModel
 from django.contrib.auth import get_user_model
 from decimal import Decimal
 from apps.customers.models import Customer
+from apps.shop.models import Shop
 
 User = get_user_model()
 
@@ -26,6 +27,7 @@ class Order(TimeStampedUUIDModel):
         null=True,
         blank=True,
     )
+    shop = models.ForeignKey(Shop, related_name="shops", on_delete=models.CASCADE)
     transaction_id = models.CharField(null=True, default=True, max_length=15)
     customer = models.ForeignKey(
         Customer, related_name="orders", on_delete=models.SET_NULL, null=True

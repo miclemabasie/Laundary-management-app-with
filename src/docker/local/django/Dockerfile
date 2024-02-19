@@ -31,8 +31,7 @@ RUN pip3 install --upgrade pip
 # installing requirements
 COPY ./requirements.txt /app/requirements.txt
 WORKDIR /app
-RUN pip intsll -r requirements.txt
-
+RUN pip install -r requirements.txt
 
 # Entrypointfile specifies custom commands to run before container starts
 COPY ./docker/local/django/entrypoint /entrypoint

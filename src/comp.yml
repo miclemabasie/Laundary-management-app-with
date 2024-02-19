@@ -1,0 +1,56 @@
+name: src
+services:
+  api:
+    build:
+      context: /home/electron/Dev/python/Laundary-management-app-with/src
+      dockerfile: ./docker/local/django/Dockerfile
+    command:
+    - /start
+    environment:
+      CELERY_BACKEND: redis://localhost:6379/0
+      CELERY_BROKER_URL: redis://localhost:6379/0
+      DEBUG: "True"
+      DOMAIN: localhost:8000
+      EMAIL_HOST: sandbox.smtp.mailtrap.io
+      EMAIL_HOST_PASSWORD: cd9793cf22a678
+      EMAIL_HOST_USER: 1e7b0e3598e335
+      EMAIL_PORT: "2525"
+      MAIL_GUN_API_KEY: bafd9c614656e284148d034a7394d15c-07f37fca-81238a50
+      POSTGRES_DB: lma
+      POSTGRES_ENGINE: django.db.backends.postgresql
+      POSTGRES_HOST: localhost
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_PORT: "5432"
+      POSTGRES_USER: miclem
+      SECRET_KEY: sdfja;lskdfjas;kldfjas;kldhfa;klsdjf;klasjdf;klasjdfhjkghu23yo4ui234
+      SIGNING_KEY: dsjl;afkjaskldfjaskldfjaskldfjaklsdfjajshdfjkashdfjkashdfjkhwj3424h23
+    networks:
+      lma: null
+    ports:
+    - mode: ingress
+      target: 8000
+      published: "8000"
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: /home/electron/Dev/python/Laundary-management-app-with/src
+      target: /app
+      bind:
+        create_host_path: true
+    - type: volume
+      source: static_volume
+      target: /app/staticfiles
+      volume: {}
+    - type: volume
+      source: media_volume
+      target: /app/mediafiles
+      volume: {}
+networks:
+  lma:
+    name: src_lma
+    driver: bridge
+volumes:
+  media_volume:
+    name: src_media_volume
+  static_volume:
+    name: src_static_volume

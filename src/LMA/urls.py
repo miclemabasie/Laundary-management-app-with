@@ -17,4 +17,5 @@ urlpatterns = [
     path("api/v1/auth/", include("djoser.urls.jwt")),
     path("api/v1/customers/", include("apps.customers.urls", namespace="customers")),
     path("api/v1/orders/", include("apps.orders.urls", namespace="orders")),
+    path("api/v1/shops/", include("apps.shop.urls", namespace="shop")),
 ]
