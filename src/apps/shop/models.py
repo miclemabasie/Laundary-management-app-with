@@ -11,14 +11,14 @@ User = get_user_model()
 class Shop(TimeStampedUUIDModel):
     user = models.ForeignKey(User, related_name="shop", on_delete=models.CASCADE)
     subscription = models.OneToOneField(
-        Subscription, related_name="shop", on_delete=models.CASCADE
+        Subscription, related_name="shop", on_delete=models.SET_NULL, blank=True, null=True
     )
     shop_name = models.CharField(
-        verbose_name=_("Shop Name"), max_length=200, unique=True
+        verbose_name=_("Shop Name"), max_length=200, unique=True, blank=True, null=True
     )
-    description = models.TextField(verbose_name=_("Description"))
-    Location = models.CharField(verbose_name=_("Loaction"), max_length=200)
-    is_verified = False
+    description = models.TextField(verbose_name=_("Description"), blank=True, null=True)
+    Location = models.CharField(verbose_name=_("Loaction"), max_length=200, blank=True, null=True)
+    is_verified = models.BooleanField(default=False)
 
     def __str__(self):
         return f"Shop-{self.shop_name}"

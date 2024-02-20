@@ -4,5 +4,6 @@ from . import views
 app_name = "subscriptions"
 
 urlpatterns = [
-    path("", views.SerializerListAPIView.as_view(), name="list-subscription")
+    path("", views.list_subscriptions, name="list-subscription"),
+    path("create", views.create_subscription, name="create-subscription")
 ]

@@ -47,8 +47,7 @@ class Subscription(TimeStampedUUIDModel):
             self.price = 10.0
         elif self.plan_type == "premium":
             self.price = 20.0
-        self.is_active = True
-        return super().save(*a, *kw)
+        return super().save(*a, **kw)
 
     def __str__(self):
         return f"subscription-{self.shop}"
