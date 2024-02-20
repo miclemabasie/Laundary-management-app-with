@@ -1,5 +1,20 @@
 # Laundry Management System - API
 
+# Table of Contents
+
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Setup](#setup)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+4. [Running the Application in a Container](#running-the-application-in-a-container)
+5. [API Endpoints](#api-endpoints)
+6. [Usage](#usage)
+7. [Contributing](#contributing)
+8. [License](#license)
+9. [Contact](#contact)
+
+
 ## Overview
 
 The Laundry Management System API serves as the backend for a comprehensive solution designed to streamline laundry services. It facilitates communication between shop owners, customers, and the database. This Django-based API offers secure user authentication, order processing, subscription plans, and a review system.
@@ -16,7 +31,6 @@ The Laundry Management System API serves as the backend for a comprehensive solu
 ### Prerequisites
 
 - Python 3.x
-- Django 3.2.*
 - Virtual Environment (optional but recommended)
 
 ### Installation
@@ -24,7 +38,7 @@ The Laundry Management System API serves as the backend for a comprehensive solu
 1. Clone the repository.
    ```git clone https://github.com/miclemabasie/Laundary-management-app-with.git```
 
-2. Navigate to the ```src`` directory
+2. Navigate to the ```src``` directory
     ```cd src```
 
 3. Install project dependencies
