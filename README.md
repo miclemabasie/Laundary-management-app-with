@@ -10,7 +10,6 @@
 4. [Running the Application in a Container](#running-the-application-in-a-container)
 5. [API Endpoints](#api-endpoints)
 6. [Usage](#usage)
-7. [Contributing](#contributing)
 8. [License](#license)
 9. [Contact](#contact)
 
@@ -35,26 +34,26 @@ The Laundry Management System API serves as the backend for a comprehensive solu
 
 ### Installation
 
-1. Clone the repository.
+1. Clone the repository by running the following command:
    ```git clone https://github.com/miclemabasie/Laundary-management-app-with.git```
 
-2. Navigate to the ```src``` directory
+2. Navigate to the ```src``` directory with the following command:
     ```cd src```
 
-3. Install project dependencies
+3. Install project dependencies, run the following command: 
     ```pip install -r requirements.txt```
 
 4. Configure environment variables, copy the sample environment variables from the ```.env.example``` file inside the ```src``` directory and fill in as per you needs.
-    ``` DEBUG=
-        SECRET_KEY=
-        POSTGRES_ENGINE=
-        POSTGRES_DB=
-        POSTGRES_USER=
-        POSTGRES_PASSWORD=
-        POSTGRES_HOST=
-        POSTGRES_PORT=
-        SIGNING_KEY=
-    ```
+``` DEBUG=
+SECRET_KEY=
+POSTGRES_ENGINE=
+POSTGRES_DB=
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_HOST=
+POSTGRES_PORT=
+SIGNING_KEY=
+```
 5. Run the development server
     ```python manage.py runserver```
 
@@ -90,7 +89,7 @@ If you'd like to contribute to this project, please follow the Contribution Guid
 ## License
 This project is licensed under the MIT License.
 
-Contact
+## Contact
 For inquiries or support, please contact me at [info@techwithmicle.com](info@techwithmicle.com).
 
 This README is more focused on the API part of the project, providing clear information on features, setup, available endpoints, and how users (both shop owners and customers) can interact with the API.
