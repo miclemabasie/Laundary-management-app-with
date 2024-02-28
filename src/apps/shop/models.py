@@ -3,7 +3,7 @@ from django.contrib.auth import get_user_model
 from apps.subscriptions.models import Subscription
 from apps.common.models import TimeStampedUUIDModel
 from django.utils.translation import gettext_lazy as _
-
+import uuid
 
 User = get_user_model()
 
@@ -17,8 +17,14 @@ class Shop(TimeStampedUUIDModel):
         verbose_name=_("Shop Name"), max_length=200, unique=True, blank=True, null=True
     )
     description = models.TextField(verbose_name=_("Description"), blank=True, null=True)
-    Location = models.CharField(verbose_name=_("Loaction"), max_length=200, blank=True, null=True)
+    location = models.CharField(verbose_name=_("Loaction"), max_length=200, blank=True, null=True)
     is_verified = models.BooleanField(default=False)
+    shop_id = models.CharField(verbose_name=_("Shop ID"), max_length=200, blank=True, null=True, unique=True)
+    logo = models.ImageField(verbose_name=_("Logo"), upload_to='logos/', null=True, blank=True)
+
+    def save(self, *a, **kw) -> None:
+        self.shop_id = str(uuid.uuid4())[-6:]
+        return super().save(*a, **kw)
 
     def __str__(self):
         return f"Shop-{self.shop_name}"
@@ -39,6 +45,9 @@ class StaffMember(TimeStampedUUIDModel):
     role = models.CharField(
         verbose_name=_("Staff Role"), max_length=20, choices=STAFF_ROLES
     )
+
+
+    
 
     def __str__(self):
         return f"{self.user.username} staff for {self.shop.name}"

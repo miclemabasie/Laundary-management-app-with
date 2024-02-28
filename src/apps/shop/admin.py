@@ -3,7 +3,7 @@ from .models import Shop
 
 
 class ShopAdmin(admin.ModelAdmin):
-    list_display = ["user", "subscription", "shop_name", "Location", "is_verified"]
+    list_display = ["user", "subscription", "shop_name", "location", "is_verified"]
 
 
 admin.site.register(Shop, ShopAdmin)

@@ -58,6 +58,8 @@ def create_subscription(request, *args, **kwargs):
                 subscription = subscription,
             )
             shop.save()
+            subscription.is_active = True
+            subscription.save()
             return Response({"message": "success"}, status=status.HTTP_200_OK)
         else:
             return Response({"error": "something went wrong!"})
@@ -72,3 +74,16 @@ def list_subscriptions(request, *args, **kwargs):
 
     serializer = SubscriptionListSerializer(queryset, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+@api_view(["GET"])
+@permission_classes([permissions.IsAuthenticatedOrReadOnly])
+def user_subscription_details(request):
+    user = request.user
+    subscription = Subscription.objects.filter(shop_owner=user)
+    if subscription.exists():
+        subscription = subscription.first()
+        serializer = SubscriptionListSerializer(subscription)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    else:
+        return Response({"error": "Current logged in user has no subscription available"})

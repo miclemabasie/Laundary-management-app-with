@@ -88,6 +88,14 @@ class Subscription(TimeStampedUUIDModel):
             self.standard_webinars_training_sessions = True
             self.price = 10.0
         elif self.plan_type == "premium":
+            # standard plan features
+            self.standard_order_tracking = True
+            self.standard_customer_support = True
+            self.standard_enhanced_image_uploads = True
+            self.standard_basic_email_campaigns = True
+            self.standard_portfolio_showcase = True
+            self.standard_standard_industry_resources = True
+            self.standard_webinars_training_sessions = True
             # Premium Plan Features
             self.premium_order_tracking = True
             self.premium_customer_support = True

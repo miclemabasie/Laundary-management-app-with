@@ -1,8 +1,6 @@
 from rest_framework import serializers
 from .models import Shop
 
-
-
 class ShopListSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -12,5 +10,19 @@ class ShopListSerializer(serializers.ModelSerializer):
             "shop_name",
             "description", 
             "location",
-            "is_verified"
+            "is_verified",
+            "shop_id",
+            "logo",
+        ]
+
+class ShopUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+
+        model = Shop
+        fields = [
+            "shop_name",
+            "description",
+            "location",
+            "logo"
         ]
