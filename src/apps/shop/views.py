@@ -16,7 +16,7 @@ def list_all_shop_view(request):
     """
     
     queryset = Shop.objects.all()    
-    serializer = ShopListSerializer(queryset, many=True)
+    serializer = ShopListSerializer(queryset, many=True, context={"request": request})
     print("this is a response")
 
     print(serializer.data)
@@ -25,12 +25,11 @@ def list_all_shop_view(request):
 
 
 @api_view(["GET"])
-@permission_classes([permissions.IsAuthenticated])
 def get_shop_detial(request, shop_id):
     shop = Shop.objects.filter(shop_id=shop_id)
     if shop.exists():
         shop_instance = shop.first()
-        serializer = ShopListSerializer(shop_instance)
+        serializer = ShopListSerializer(shop_instance, context={"request": request})
         return Response(serializer.data, status=status.HTTP_200_OK)
     else:
         return Response({"error": "Shop not found"}, status=status.HTTP_404_NOT_FOUND)

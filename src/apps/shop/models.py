@@ -4,6 +4,7 @@ from apps.subscriptions.models import Subscription
 from apps.common.models import TimeStampedUUIDModel
 from django.utils.translation import gettext_lazy as _
 import uuid
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -28,6 +29,10 @@ class Shop(TimeStampedUUIDModel):
 
     def __str__(self):
         return f"Shop-{self.shop_name}"
+
+    @property
+    def get_absolute_url(self):
+        return reverse('shop:shop-detail', kwargs={'shop_id': self.shop_id})
 
 
 class StaffMember(TimeStampedUUIDModel):
