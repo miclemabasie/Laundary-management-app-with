@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Shop
 from django.urls import reverse
 from django.http import HttpRequest
+from apps.reviews.serializers import ReviewListSerializer
 
 
 class ShopListSerializer(serializers.ModelSerializer):
@@ -12,6 +13,8 @@ class ShopListSerializer(serializers.ModelSerializer):
     )
 
     place_order_url = serializers.SerializerMethodField(read_only=True)
+
+    reviews = serializers.SerializerMethodField(read_only=True)
     
     class Meta:
         model = Shop
@@ -25,6 +28,7 @@ class ShopListSerializer(serializers.ModelSerializer):
             "logo",
             "url",
             "place_order_url",
+            "reviews",
         ]
 
     def __init__(self, instance=None, data=serializers.empty, context=None, **kwargs):
@@ -39,6 +43,11 @@ class ShopListSerializer(serializers.ModelSerializer):
         relative_path = reverse("orders:order-create", kwargs={"shop_id": obj.shop_id})
         full_path = self.request.build_absolute_uri(relative_path)
         return full_path
+    
+    def get_reviews(self, obj):
+        reviews = obj.reviews.all()
+        serializer = ReviewListSerializer(reviews, many=True)
+        return serializer.data
 
 class ShopUpdateSerializer(serializers.ModelSerializer):
 

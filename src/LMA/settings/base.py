@@ -28,7 +28,9 @@ DEBUG = env("DEBUG")
 # exception if SECRET_KEY not in os.environ
 SECRET_KEY = env("SECRET_KEY")
 
-EMAIL_BACKEND = "djcelery_email.backends.CeleryEmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# EMAIL_BACKEND = "djcelery_email.backends.CeleryEmailBackend"
 
 ALLOWED_HOSTS = []
 

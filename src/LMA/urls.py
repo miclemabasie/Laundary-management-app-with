@@ -21,6 +21,8 @@ urlpatterns = [
     path("api/v1/orders/", include("apps.orders.urls", namespace="orders")),
     path("api/v1/shops/", include("apps.shop.urls", namespace="shop")),
     path("api/v1/plans/", include("apps.subscriptions.urls", namespace="subscriptions")),
+    path("api/v1/gallery/", include("apps.gallery.urls", namespace="gallery")),
+    path("api/v1/reviews/", include("apps.reviews.urls", namespace="reviews")),
 ]
 
 if settings.DEBUG:
