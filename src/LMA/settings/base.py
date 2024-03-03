@@ -58,6 +58,7 @@ THRID_PARTY_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "djcelery_email",
+    "django_nose",
 ]
 
 LOCAL_APPS = [
@@ -89,6 +90,12 @@ MIDDLEWARE = [
 
 
 ROOT_URLCONF = "LMA.urls"
+
+# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=users,customers,gallery,orders,profiles,reviews,settings,shop,subscriptions',
+]
 
 TEMPLATES = [
     {
