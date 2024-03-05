@@ -8,20 +8,19 @@ from apps.reviews.serializers import ReviewListSerializer
 class ShopListSerializer(serializers.ModelSerializer):
     # url = serializers.SerializerMethodField(read_only=True)
     url = serializers.HyperlinkedIdentityField(
-        view_name='shop:shop-detail',
-        lookup_field='shop_id'  
+        view_name="shop:shop-detail", lookup_field="shop_id"
     )
 
     place_order_url = serializers.SerializerMethodField(read_only=True)
 
     reviews = serializers.SerializerMethodField(read_only=True)
-    
+
     class Meta:
         model = Shop
         fields = [
             "user",
             "shop_name",
-            "description", 
+            "description",
             "location",
             "is_verified",
             "shop_id",
@@ -33,7 +32,7 @@ class ShopListSerializer(serializers.ModelSerializer):
 
     def __init__(self, instance=None, data=serializers.empty, context=None, **kwargs):
         # Access the request from the context
-        self.request = context.get('request') if context else None
+        self.request = context.get("request") if context else None
 
         # Your custom initialization logic here, using the request if needed
 
@@ -43,20 +42,16 @@ class ShopListSerializer(serializers.ModelSerializer):
         relative_path = reverse("orders:order-create", kwargs={"shop_id": obj.shop_id})
         full_path = self.request.build_absolute_uri(relative_path)
         return full_path
-    
+
     def get_reviews(self, obj):
         reviews = obj.reviews.all()
         serializer = ReviewListSerializer(reviews, many=True)
         return serializer.data
+
 
 class ShopUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
 
         model = Shop
-        fields = [
-            "shop_name",
-            "description",
-            "location",
-            "logo"
-        ]
+        fields = ["shop_name", "description", "location", "logo"]

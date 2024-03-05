@@ -11,17 +11,15 @@ class ImageListSerializer(serializers.ModelSerializer):
             "image",
         ]
 
+
 class ImageCreateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Image
         fields = ["gallery", "image", "name", "description", "shop_id"]
 
+
 class GalleryCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Gallery
         fields = ["shop"]
-
-
-
-

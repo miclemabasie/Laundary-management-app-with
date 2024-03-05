@@ -11,11 +11,11 @@ from rest_framework.decorators import api_view, permission_classes
 @api_view(["GET"])
 def list_all_shop_view(request):
     """
-    List all laundary shops on the platform, this view can be accessed by all user 
+    List all laundary shops on the platform, this view can be accessed by all user
     both authenticated and unauthenticated users
     """
-    
-    queryset = Shop.objects.all()    
+
+    queryset = Shop.objects.all()
     serializer = ShopListSerializer(queryset, many=True, context={"request": request})
     print("this is a response")
 
@@ -53,4 +53,3 @@ def update_shop_information(request, shop_id):
         return Response({"message": "working on it."})
     else:
         return Response({"error": "Shop not found"}, status=status.HTTP_404_NOT_FOUND)
-    

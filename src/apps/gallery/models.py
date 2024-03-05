@@ -6,12 +6,17 @@ from apps.subscriptions.models import Subscription
 
 
 class Image(TimeStampedUUIDModel):
-    gallery = models.OneToOneField("Gallery", related_name="images", on_delete=models.CASCADE, verbose_name="Gallery")
-    name = models.CharField(verbose_name=_("Image Name"), max_length=200, blank=True, null=True)
-    description = models.TextField(verbose_name=_("Description"), blank=True, null=True)
-    image = models.ImageField(
-        verbose_name=_("Gallery Photo"), upload_to="galleries"
+    gallery = models.OneToOneField(
+        "Gallery",
+        related_name="images",
+        on_delete=models.CASCADE,
+        verbose_name="Gallery",
     )
+    name = models.CharField(
+        verbose_name=_("Image Name"), max_length=200, blank=True, null=True
+    )
+    description = models.TextField(verbose_name=_("Description"), blank=True, null=True)
+    image = models.ImageField(verbose_name=_("Gallery Photo"), upload_to="galleries")
 
     def save(self, *a, **kw):
         # Check if gallery is reached max photo size before adding any other iamge
@@ -37,7 +42,7 @@ class Gallery(TimeStampedUUIDModel):
             self.max_photos = 10
         elif subscription.plan_type == "standard":
             self.max_photos == 200
-        elif subscription.plan_type == "premium": 
+        elif subscription.plan_type == "premium":
             self.max_photos = 500
         return super().save(*args, **kwargs)
 

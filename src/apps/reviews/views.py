@@ -21,17 +21,22 @@ def create_review(request):
     if shop.exists():
         shop = shop.first()
     else:
-        return Response({"error": "Shop with given id not found."}, status=status.HTTP_400_BAD_REQUEST)
-    
+        return Response(
+            {"error": "Shop with given id not found."},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
     # Check rating is between 1 and 5
     if data["rating"] < 1 or data["rating"] > 5:
         return Response({"error": "Invalid rating"}, status=status.HTTP_400_BAD_REQUEST)
-    
+
     # Check if the current user already has a rating for the same shop
     rating = Review.objects.filter(user=request.user, shop=shop)
     if rating.exists():
-        return Response({"error": "User already has a rating for the given shop."}, status=status.HTTP_400_BAD_REQUEST)
-    
+        return Response(
+            {"error": "User already has a rating for the given shop."},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
 
     # Create review
     review_create = {
@@ -56,8 +61,9 @@ def create_review(request):
 
     else:
         print(serializer.errors)
-        return Response({"error": "Invalid request data"}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            {"error": "Invalid request data"}, status=status.HTTP_400_BAD_REQUEST
+        )
 
     review = ReviewListSerializer(review)
     return Response({"message": review.data}, status=status.HTTP_201_CREATED)
-

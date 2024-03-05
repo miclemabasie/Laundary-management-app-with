@@ -67,13 +67,12 @@ def create_order_view(request, shop_id, *a, **kw):
     if user.exists():
         user = user.first()
 
-
     # get customer based on id
     customer, created = Customer.objects.get_or_create(
         name=data["customer"], phone_number=data["phone"]
     )
     # Check if the the customer was just created or has been in the system
-    # Then let the shop owner know if this was a new user 
+    # Then let the shop owner know if this was a new user
     # by adding "new_customer" as metadata to the response
     # Which could be used to do custome things.
     if created:
@@ -98,7 +97,7 @@ def create_order_view(request, shop_id, *a, **kw):
         else:
             return Response({"error": orderitem_serializer.errors})
 
-    # Validate the order instance 
+    # Validate the order instance
     # This is done to allow the price transaction inside the save method to now take place
     # since all the orderitems have now been added to the created order
     order.validated = True

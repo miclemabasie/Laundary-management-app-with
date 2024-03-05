@@ -6,10 +6,8 @@ class SubscriptionCreateSerailizer(serializers.ModelSerializer):
 
     class Meta:
         model = Subscription
-        fields = [
-            "shop_owner",
-            "plan_type"         
-        ]
+        fields = ["shop_owner", "plan_type"]
+
 
 class SubscriptionListSerializer(serializers.ModelSerializer):
 
@@ -31,7 +29,7 @@ class SubscriptionListSerializer(serializers.ModelSerializer):
             "basic_basic_email_campaigns",
             "basic_gallery_and_portfolio",
             "basic_limited_access_tutorials_guides",
-            #", Standard Plan Features
+            # ", Standard Plan Features
             "standard_order_tracking",
             "standard_customer_support",
             "standard_enhanced_image_uploads",

@@ -13,10 +13,12 @@ def base_user(db, user_factory):
     new_base_user = user_factory.create(email="electrno@TECHWITHMICLEM.COM")
     return new_base_user
 
+
 @pytest.fixture
 def email_base_user(db, user_factory):
     new_base_user = user_factory.create(email="electrno@TECHWITHMICLEM.COM")
     return new_base_user
+
 
 @pytest.fixture
 def super_user(db, user_factory):

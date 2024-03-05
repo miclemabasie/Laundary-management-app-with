@@ -13,10 +13,10 @@ from apps.gallery.models import Gallery, Image
 from apps.customers.models import Customer
 
 
-
 User = get_user_model()
 
 faker = FakerFactory.create()
+
 
 @factory.django.mute_signals(post_save)
 class UserFactory(factory.django.DjangoModelFactory):
@@ -39,7 +39,7 @@ class UserFactory(factory.django.DjangoModelFactory):
             return manager.create_superuser(*args, **kwargs)
         else:
             return manager.create_user(*args, **kwargs)
-        
+
 
 @factory.django.mute_signals(post_save)
 class ProfileFactory(factory.django.DjangoModelFactory):

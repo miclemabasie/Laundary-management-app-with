@@ -3,7 +3,7 @@ from .models import Review
 
 
 class ReviewCreateSerializer(serializers.ModelSerializer):
-    
+
     class Meta:
         model = Review
         fields = ["shop", "rating", "comment"]

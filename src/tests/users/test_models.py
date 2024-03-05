@@ -2,8 +2,10 @@ import pytest
 from django.core.exceptions import ValidationError
 from apps.users.managers import CustomUserManager
 
+
 def test_user_str(base_user):
     assert base_user.__str__() == f"{base_user.username}"
+
 
 def test_user_shortname(base_user):
     assert base_user.get_shortname() == f"{base_user.username.title()}"
@@ -57,6 +59,7 @@ def test_useruser_must_have_is_staff_as_true(user_factory):
         user_factory.create(is_staff=False, is_superuser=True)
     assert str(err.value) == "Superuser must have is_staff = True"
 
+
 def test_user_account_has_password(user_factory):
     """Test that a superuser must have the property of is_staff set to true"""
     with pytest.raises(ValueError) as err:
@@ -68,6 +71,7 @@ def test_user_account_has_password(user_factory):
 #     """Test that a superuser must have the property of is_staff set to true"""
 #     email = "electrno@TECHWITHMICLEM.COM"
 #     assert email_base_user.email == email.lower()
+
 
 def test_user_email_validators(email_base_user):
     """Test that the user email is properly validated"""

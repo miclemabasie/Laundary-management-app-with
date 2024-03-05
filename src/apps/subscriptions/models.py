@@ -9,7 +9,6 @@ from datetime import timedelta
 User = get_user_model()
 
 
-
 class Subscription(TimeStampedUUIDModel):
 
     PLAN_CHOICES = [
@@ -19,7 +18,11 @@ class Subscription(TimeStampedUUIDModel):
     ]
 
     shop_owner = models.ForeignKey(
-        User, related_name="subscriptions", on_delete=models.SET_NULL, blank=True, null=True
+        User,
+        related_name="subscriptions",
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
     )
     plan_type = models.CharField(
         verbose_name=_("Plan Type"), max_length=20, choices=PLAN_CHOICES
@@ -67,8 +70,6 @@ class Subscription(TimeStampedUUIDModel):
     premium_gallery_and_portfolio = models.BooleanField(default=False)
     premium_training_and_resources = models.BooleanField(default=False)
 
-
-
     def save(self, *a, **kw) -> None:
         # Auto fill in the transactioni id
         self.transaction_id = str(uuid.uuid4())[-17:]
@@ -78,7 +79,7 @@ class Subscription(TimeStampedUUIDModel):
         if self.plan_type == "basic":
             self.price = 0.0
         elif self.plan_type == "standard":
-             # Standard Plan Features
+            # Standard Plan Features
             self.standard_order_tracking = True
             self.standard_customer_support = True
             self.standard_enhanced_image_uploads = True
@@ -106,7 +107,7 @@ class Subscription(TimeStampedUUIDModel):
             self.premium_gallery_and_portfolio = True
             self.premium_training_and_resources = True
             self.price = 20.0
-            
+
         return super().save(*a, **kw)
 
     def __str__(self):

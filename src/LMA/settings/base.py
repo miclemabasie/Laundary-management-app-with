@@ -58,7 +58,6 @@ THRID_PARTY_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "djcelery_email",
-    "django_nose",
 ]
 
 LOCAL_APPS = [
@@ -93,8 +92,8 @@ ROOT_URLCONF = "LMA.urls"
 
 # TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 NOSE_ARGS = [
-    '--with-coverage',
-    '--cover-package=users,customers,gallery,orders,profiles,reviews,settings,shop,subscriptions',
+    "--with-coverage",
+    "--cover-package=users,customers,gallery,orders,profiles,reviews,settings,shop,subscriptions",
 ]
 
 TEMPLATES = [
@@ -141,8 +140,8 @@ STATIC_URL = "/staticfiles/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIR = []
 
-MEDIA_URL = '/mediafiles/'
-MEDIA_ROOT = BASE_DIR / 'mediafiles'
+MEDIA_URL = "/mediafiles/"
+MEDIA_ROOT = BASE_DIR / "mediafiles"
 
 
 MEDIA_URL = "/mediafiles/"
