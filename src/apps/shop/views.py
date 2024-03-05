@@ -1,11 +1,12 @@
-from django.shortcuts import render
-from .serializers import ShopListSerializer, ShopUpdateSerializer
-from .models import Shop
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
+from rest_framework import permissions, status
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
-from rest_framework import status, permissions
-from rest_framework.decorators import api_view, permission_classes
+
+from .models import Shop
+from .serializers import ShopListSerializer, ShopUpdateSerializer
 
 
 @api_view(["GET"])

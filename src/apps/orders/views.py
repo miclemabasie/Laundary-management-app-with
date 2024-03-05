@@ -1,12 +1,15 @@
-from django.shortcuts import render
-from rest_framework import permissions, authentication
-from rest_framework.response import Response
-from .models import Order, OrderItem
-from rest_framework.decorators import api_view, permission_classes
-from .serializers import OrderItemSerializers, OrderSerializer, OrderCreateSerializer
 from django.contrib.auth import get_user_model
+from django.shortcuts import render
+from rest_framework import authentication, permissions
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+
 from apps.customers.models import Customer
 from apps.shop.models import Shop
+
+from .models import Order, OrderItem
+from .serializers import (OrderCreateSerializer, OrderItemSerializers,
+                          OrderSerializer)
 
 User = get_user_model()
 

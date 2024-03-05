@@ -1,17 +1,16 @@
-from faker import Factory as FakerFactory
 import factory
-from LMA.settings.base import AUTH_USER_MODEL
 from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
+from faker import Factory as FakerFactory
 
-from apps.profiles.models import Profile
-from apps.subscriptions.models import Subscription
-from apps.orders.models import Order, OrderItem
-from apps.shop.models import Shop
-from apps.reviews.models import Review
-from apps.gallery.models import Gallery, Image
 from apps.customers.models import Customer
-
+from apps.gallery.models import Gallery, Image
+from apps.orders.models import Order, OrderItem
+from apps.profiles.models import Profile
+from apps.reviews.models import Review
+from apps.shop.models import Shop
+from apps.subscriptions.models import Subscription
+from LMA.settings.base import AUTH_USER_MODEL
 
 User = get_user_model()
 

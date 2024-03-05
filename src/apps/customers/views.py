@@ -1,17 +1,14 @@
 from django.shortcuts import render
-from rest_framework import permissions, authentication
-from .models import Customer
-from apps.orders.models import Order, OrderItem
-from rest_framework.decorators import (
-    api_view,
-    permission_classes,
-    authentication_classes,
-)
-from rest_framework.response import Response
-from .serializers import CustomerSerializer
+from rest_framework import authentication, permissions, status
+from rest_framework.decorators import (api_view, authentication_classes,
+                                       permission_classes)
 from rest_framework.generics import ListAPIView
+from rest_framework.response import Response
 
-from rest_framework import status
+from apps.orders.models import Order, OrderItem
+
+from .models import Customer
+from .serializers import CustomerSerializer
 
 
 @api_view(["GET"])

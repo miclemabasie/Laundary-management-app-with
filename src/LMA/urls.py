@@ -1,8 +1,9 @@
-from django.contrib import admin
-from django.urls import path, include
-from apps.common.views import test_send_mail, js_test_rout
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.urls import include, path
+
+from apps.common.views import js_test_rout, test_send_mail
 
 # from rest_framework_simplejwt.views import (
 #     TokenObtainPairView,

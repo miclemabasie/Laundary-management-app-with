@@ -1,9 +1,10 @@
-from django.db import models
 from django.contrib.auth import get_user_model
-from apps.shop.models import Shop
-from apps.common.models import TimeStampedUUIDModel
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import MinValueValidator, MaxValueValidator
+
+from apps.common.models import TimeStampedUUIDModel
+from apps.shop.models import Shop
 
 User = get_user_model()
 

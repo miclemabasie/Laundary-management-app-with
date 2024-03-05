@@ -1,14 +1,13 @@
 from django.shortcuts import render
-from rest_framework import status, permissions
-from rest_framework.response import Response
+from rest_framework import permissions, status
 from rest_framework.decorators import api_view, permission_classes
-from .models import Gallery, Image
-from .serializers import (
-    GalleryCreateSerializer,
-    ImageCreateSerializer,
-    ImageListSerializer,
-)
+from rest_framework.response import Response
+
 from apps.shop.models import Shop
+
+from .models import Gallery, Image
+from .serializers import (GalleryCreateSerializer, ImageCreateSerializer,
+                          ImageListSerializer)
 
 
 @api_view(["POST"])

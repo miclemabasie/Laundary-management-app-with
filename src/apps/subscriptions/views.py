@@ -1,13 +1,15 @@
-from django.shortcuts import get_object_or_404
-from .models import Subscription
-from .serializers import SubscriptionListSerializer, SubscriptionCreateSerailizer
-from rest_framework.generics import ListAPIView
 from django.contrib.auth import get_user_model
+from django.shortcuts import get_object_or_404
 from rest_framework import permissions, status
-from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.generics import ListAPIView
+from rest_framework.response import Response
+
 from apps.shop.models import Shop
 
+from .models import Subscription
+from .serializers import (SubscriptionCreateSerailizer,
+                          SubscriptionListSerializer)
 
 User = get_user_model()
 

@@ -1,10 +1,12 @@
-from django.db import models
-from apps.common.models import TimeStampedUUIDModel
-from django.utils.translation import gettext_lazy as _
-from django.contrib.auth import get_user_model
 import uuid
-from django.utils import timezone
 from datetime import timedelta
+
+from django.contrib.auth import get_user_model
+from django.db import models
+from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
+
+from apps.common.models import TimeStampedUUIDModel
 
 User = get_user_model()
 

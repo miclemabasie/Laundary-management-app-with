@@ -1,12 +1,12 @@
-from typing import Any
-import faker
 import random
+from typing import Any
 
-from django.core.management.base import BaseCommand, CommandParser
+import faker
 from django.contrib.auth import get_user_model
-from apps.orders.models import Order, OrderItem
-from apps.customers.models import Customer
+from django.core.management.base import BaseCommand, CommandParser
 
+from apps.customers.models import Customer
+from apps.orders.models import Order, OrderItem
 
 User = get_user_model()
 

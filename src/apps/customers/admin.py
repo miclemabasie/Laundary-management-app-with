@@ -1,7 +1,8 @@
 from django.contrib import admin
-from apps.orders.models import Order, OrderItem
-from .models import Customer
 
+from apps.orders.models import Order, OrderItem
+
+from .models import Customer
 
 # class OrderInline(admin.TabularInline):
 #     model = Order

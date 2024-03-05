@@ -1,7 +1,7 @@
-from pathlib import Path
-import environ
 import os
+import environ
 from datetime import timedelta
+from pathlib import Path
 
 
 # Config environment varaibles
@@ -205,6 +205,7 @@ DJOSER = {
 # LOGGING
 import logging
 import logging.config
+
 from django.utils.log import DEFAULT_LOGGING
 
 logger = logging.getLogger(__name__)

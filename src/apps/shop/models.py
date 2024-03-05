@@ -1,10 +1,12 @@
-from django.db import models
-from django.contrib.auth import get_user_model
-from apps.subscriptions.models import Subscription
-from apps.common.models import TimeStampedUUIDModel
-from django.utils.translation import gettext_lazy as _
 import uuid
+
+from django.contrib.auth import get_user_model
+from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
+
+from apps.common.models import TimeStampedUUIDModel
+from apps.subscriptions.models import Subscription
 
 User = get_user_model()
 

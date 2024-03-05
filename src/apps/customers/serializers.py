@@ -1,8 +1,10 @@
-from rest_framework import serializers
-from .models import Customer
-from apps.orders.models import Order, OrderItem
 from django.forms import model_to_dict
+from rest_framework import serializers
+
+from apps.orders.models import Order, OrderItem
 from apps.orders.serializers import OrderSerializer
+
+from .models import Customer
 
 
 class CustomerSerializer(serializers.ModelSerializer):

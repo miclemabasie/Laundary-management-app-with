@@ -1,6 +1,7 @@
 from django.db import models
-from apps.common.models import TimeStampedUUIDModel
 from django.utils.translation import gettext_lazy as _
+
+from apps.common.models import TimeStampedUUIDModel
 from apps.shop.models import Shop
 from apps.subscriptions.models import Subscription
 

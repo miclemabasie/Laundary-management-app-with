@@ -68,16 +68,16 @@ black:
 
 
 isort-check:
-	docker-compose exec api isort . --check-only --skip env --skip migrations
+	docker compose exec api isort . --check-only --skip env --skip migrations
 
 isort-diff:
-	docker-compose exec api isort . --diff --skip env --skip  migrations
+	docker compose exec api isort . --diff --skip env --skip  migrations
 	
 isort:
-	docker-compose exec api isort . --skip env --skip migrations
+	docker compose exec api isort . --skip env --skip migrations
 
 lint: 
-	flake8 black-check isort-check
+	flake8 black isort
 
 watch:
 	docker compose exec api watchmedo shell-command --patterns="*.py" --recursive --command='make lint test' .

@@ -1,9 +1,11 @@
-from rest_framework.response import Response
-from rest_framework.decorators import api_view, permission_classes
 from rest_framework import permissions, status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+
+from apps.shop.models import Shop
+
 from .models import Review
 from .serializers import ReviewCreateSerializer, ReviewListSerializer
-from apps.shop.models import Shop
 
 # Attach review to all shops
 

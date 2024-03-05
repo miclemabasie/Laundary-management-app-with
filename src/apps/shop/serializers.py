@@ -1,8 +1,10 @@
-from rest_framework import serializers
-from .models import Shop
-from django.urls import reverse
 from django.http import HttpRequest
+from django.urls import reverse
+from rest_framework import serializers
+
 from apps.reviews.serializers import ReviewListSerializer
+
+from .models import Shop
 
 
 class ShopListSerializer(serializers.ModelSerializer):
